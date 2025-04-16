@@ -1,4 +1,4 @@
-from inventory_transaction import InventoryTransaction
+from modules.order_management.inventory_transaction import InventoryTransaction
 
 class SalesOrder(InventoryTransaction):
     def __init__(self, transaction_id, warehouse_id, transaction_date, customer_id):
