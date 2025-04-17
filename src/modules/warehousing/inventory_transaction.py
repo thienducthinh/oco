@@ -10,9 +10,6 @@ class InventoryTransaction:
 
     def add_line(self, item_id, quantity, unit_price):
         line_id = len(self.lines) + 1
-        if self.transaction_type == "Purchase Order":
-            line = PurchaseOrderLine(line_id, item_id, quantity, unit_price)
-        elif self.transaction_type == "Sales Order":
-            line = SalesOrderLine(line_id, item_id, quantity, unit_price)
+        line = InventoryTransactionLine(line_id, item_id, quantity, unit_price)
         self.lines.append(line)
 

@@ -5,3 +5,4 @@ class InventoryTransactionLine:
         self.quantity = quantity
         self.unit_price = unit_price
         self.total_price = quantity * unit_price
+        self.status = "Created"
