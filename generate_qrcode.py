@@ -67,10 +67,10 @@ def generate_qr_code(data, id):
     #     embeded_image_path="logo.jpg"  # Replace with your logo file
     # )
 
-    img.save(f"qrcode_{id}.png")
+    return img
 
 
 # Data to encode in the QR code
 data = "https://example.com"
 
-generate_qr_code(data, 40)
+# generate_qr_code(data, 30)
