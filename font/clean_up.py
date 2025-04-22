@@ -1,20 +1,29 @@
 import os
-
-# Clean up stale .pkl files
+import glob
 
 def clean_up_stale_pkl_files():
     """
-    Remove stale .pkl files that are not needed anymore.
+    Remove stale .pkl and .cw127.pkl files in the font directory.
     """
-    # Define the path to the font file and the corresponding .pkl files
+    # Define the path to the font file
     font_path = "font/SF-Pro-Rounded-Regular.ttf"
-    for pkl_file in ["SF-Pro-Rounded-Regular.pkl", "SF-Pro-Rounded-Regular.cw127.pkl"]:
-        pkl_path = os.path.join(os.path.dirname(font_path), pkl_file)
-        if os.path.exists(pkl_path):
-            try:
-                os.remove(pkl_path)
-                print(f"Removed stale cache: {pkl_path}")
-            except Exception as e:
-                print(f"Failed to remove {pkl_path}: {e}")
+    font_dir = os.path.dirname(font_path)
 
+    # Search for all .pkl and .cw127.pkl files in the font directory
+    pkl_files = glob.glob(os.path.join(font_dir, "*.pkl"))
+    cw127_pkl_files = glob.glob(os.path.join(font_dir, "*.cw127.pkl"))
+
+    # Combine all matching files
+    stale_files = pkl_files + cw127_pkl_files
+
+    # Remove each stale file
+    for stale_file in stale_files:
+        if os.path.exists(stale_file):
+            try:
+                os.remove(stale_file)
+                print(f"Removed stale cache: {stale_file}")
+            except Exception as e:
+                print(f"Failed to remove {stale_file}: {e}")
+
+# Run the cleanup function
 clean_up_stale_pkl_files()

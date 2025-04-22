@@ -3,6 +3,8 @@ from datetime import datetime
 
 class PurchaseOrderPDF(FPDF):
     def header(self):
+        #TODO: Add QR code generation
+        #TODO: Add company logo
         # Logo
         try:
             self.image("logo.jpg", x=10, y=10, w=25)
@@ -78,6 +80,7 @@ def create_po_confirmation(filename, items):
     # Save PDF
     pdf.output(filename)
 
+#TODO: Replace with actual data
 items = [
     ["001", "Widget A", "10", "$50.00", "$500.00"],
     ["002", "Gadget B", "5", "$100.00", "$500.00"],
