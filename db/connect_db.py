@@ -6,7 +6,7 @@ class DBconnect(object):
         host= "localhost",
         port=int(3306),
         user="root",
-        passwd="Thinhnguyen2491") # Change the password to your own MySQL password
+        passwd="Thinhnguyen2491") #TODO Change the password to your own MySQL password
         
         self.dbcursor = self.dbconnection.cursor()
 
@@ -31,6 +31,7 @@ def execute_command(connection, command, value=None):
 
     except pymysql.Error as err:
             print(f"Error executing command: {err}")
+    
     
 # Establish the database connection
 def create_database(db):

@@ -8,6 +8,7 @@ USE OcoMainDB;
 DROP TABLE IF EXISTS City;
 DROP TABLE IF EXISTS Country;
 DROP TABLE IF EXISTS Warehouse;
+DROP TABLE IF EXISTS supplier_price_book;
 DROP TABLE IF EXISTS Item;
 DROP TABLE IF EXISTS Entity;
 
@@ -131,3 +132,29 @@ CREATE TABLE InventoryTransaction (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE supplier_price_book (
+    supplier_id INT(6) ZEROFILL,
+    item_id INT(7) ZEROFILL,
+    price DECIMAL(10, 0),
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (supplier_id, item_id),
+    FOREIGN KEY (supplier_id) REFERENCES Entity(entity_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES Item(item_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+INSERT INTO supplier_price_book (supplier_id, item_id, price)
+VALUES
+(000001, 100001, 10.00),
+(000001, 100002, 20.00),
+(000001, 100003, 30.00),
+(000002, 100001, 15.00),
+(000002, 100002, 25.00),
+(000002, 100003, 35.00),
+(000003, 100001, 12.00),
+(000003, 100002, 22.00),
+(000003, 100003, 32.00);
